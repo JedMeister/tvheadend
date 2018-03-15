@@ -1,0 +1,16 @@
+#!/bin/sh -ex
+
+SRC=/usr/local/src
+SRC2=/opt/
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
+
+echo "deb https://dl.bintray.com/tvheadend/deb jessie stable" | tee -a /etc/apt/sources.list
+#echo "deb https://dl.bintray.com/tvheadend/deb stretch stable" | tee -a /etc/apt/sources.list
+
+apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get -y install tvheadend
+
+unzip $SRC2/master.zip -d /usr/bin
+rm $SRC2/master.zip
+mv /usr/bin/tv-grab-file-master/tv_grab_file /usr/bin/tv_grab_file
+rm -rf /usr/bin/tv-grab-file-master
