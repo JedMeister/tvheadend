@@ -5,3 +5,4 @@ apt-transport-https
 apt-utils
 bzip2
 libjson-xs-perl
+dirmngr

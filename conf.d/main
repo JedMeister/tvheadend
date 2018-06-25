@@ -2,12 +2,13 @@
 
 SRC=/usr/local/src
 SRC2=/opt/
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
 
-#echo "deb https://dl.bintray.com/tvheadend/deb jessie stable" | tee -a /etc/apt/sources.list
-echo "deb https://dl.bintray.com/tvheadend/deb stretch stable" | tee -a /etc/apt/sources.list
+wget -qO- https://doozer.io/keys/tvheadend/tvheadend/pgp | apt-key add -
+
+echo "deb http://apt.tvheadend.org/stable stretch main" | tee -a /etc/apt/sources.list.d/tvheadend.list
 
 apt-get update
+
 DEBIAN_FRONTEND=noninteractive apt-get -y install tvheadend
 
 unzip $SRC2/master.zip -d /usr/bin
