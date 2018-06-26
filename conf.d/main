@@ -5,7 +5,7 @@ SRC2=/opt/
 
 wget -qO- https://doozer.io/keys/tvheadend/tvheadend/pgp | apt-key add -
 
-echo "deb http://apt.tvheadend.org/stable stretch main" | tee -a /etc/apt/sources.list.d/tvheadend.list
+echo "deb http://apt.tvheadend.org/unstable stretch main" | tee -a /etc/apt/sources.list.d/tvheadend.list
 
 apt-get update
 
@@ -15,3 +15,6 @@ unzip $SRC2/master.zip -d /usr/bin
 rm $SRC2/master.zip
 mv /usr/bin/tv-grab-file-master/tv_grab_file /usr/bin/tv_grab_file
 rm -rf /usr/bin/tv-grab-file-master
+
+#Setup ZeroTierOne
+curl -s https://install.zerotier.com/ | bash
