@@ -5,7 +5,7 @@ SRC2=/opt/
 
 wget -qO- https://doozer.io/keys/tvheadend/tvheadend/pgp | apt-key add -
 
-echo "deb http://apt.tvheadend.org/unstable stretch main" | tee -a /etc/apt/sources.list.d/tvheadend.list
+echo "deb http://apt.tvheadend.org/release stretch main" | tee -a /etc/apt/sources.list.d/tvheadend.list
 
 apt-get update
 
