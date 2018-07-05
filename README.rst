@@ -5,7 +5,7 @@ TurnKey TVHeadend simplifies setting up a streaming TV server and EPG by preinst
 
 Features:
 
-This appliance includes all the standard features in `TurnKey Core`_,
+This appliance includes all the standard features in TurnKey Core,
 and on top of that:
 
 - **TVHeadend**: Tvheadend is a TV streaming server and recorder for Linux, FreeBSD and Android supporting DVB-S, DVB-S2, DVB-C, DVB-T, ATSC, ISDB-T, IPTV, SAT>IP and HDHomeRun as input sources.
