@@ -3,10 +3,6 @@
 SRC=/usr/local/src
 SRC2=/opt/
 
-wget -qO- https://doozer.io/keys/tvheadend/tvheadend/pgp | apt-key add -
-
-echo "deb http://apt.tvheadend.org/unstable stretch main" | tee -a /etc/apt/sources.list.d/tvheadend.list
-
 apt-get update
 
 DEBIAN_FRONTEND=noninteractive apt-get -y install tvheadend
