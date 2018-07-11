@@ -1,29 +1,47 @@
 #!/usr/bin/python
-"""Set TVheadend Default Username and Password
-  Use dpkg-reconfigure instead of arguments
+"""Set TVheadend Default Password for web gui
+Option:
+    --pass=     unless provided, will ask interactively
 """
 
-import sys, os, os.path, time, string, dialog
+import sys
+import getopt
+import bcrypt
 
-from executil import system         
+from executil import system
+from dialog_wrapper import Dialog
 
-def informuser(d):
-        d.msgbox("Executing dpkg-reconfigure for tvheadend", title="Setup TVheadend", no_shadow=False)
+def usage(s=None):
+    if s:
+        print >> sys.stderr, "Error:", s
+    print >> sys.stderr, "Syntax: %s [options]" % sys.argv[0]
+    print >> sys.stderr, __doc__
+    sys.exit(1)
 
-def dpkgconfigure():
-    d = dialog.Dialog(dialog="dialog")
-    d.add_persistent_args(["--backtitle", "TurnKey Linux - First boot configuration"])
-    informuser(d)
-    system('dpkg-reconfigure tvheadend')
-    
 def main():
     try:
-        dpkgconfigure()
-    except dialog.error, exc_instance:
-        sys.stderr.write("Error:\n\n%s\n" % exc_instance.complete_message())
-        sys.exit(1)
+        opts, args = getopt.gnu_getopt(sys.argv[1:], "h",
+                                       ['help', 'pass='])
+    except getopt.GetoptError, e:
+        usage(e)
+
+    password = ""
+    for opt, val in opts:
+        if opt in ('-h', '--help'):
+            usage()
+        elif opt == '--pass':
+            password = val
+
+    if not password:
+        d = Dialog('TurnKey Linux - First boot configuration')
+        password = d.get_password(
+            "TVheadend Password",
+            "Enter Web GUI Password.")
         
-    sys.exit(0)
-
-
-if __name__ == "__main__": main()
+    """Set Package Configuration"""
+    system('debconf-set-selections', '<<<', "tvheadend tvheadend/admin_username string admin")
+    system('debconf-set-selections', '<<<', "tvheadend tvheadend/admin_password password %s" % password)
+    """Configure Package"""
+    system('DEBIAN_FRONTEND=noninteractive', 'dpkg-reconfigure', 'tvheadend')
+if __name__ == "__main__":
+    main()
