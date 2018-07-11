@@ -4,4 +4,4 @@
 . /etc/default/inithooks
 
 [ -e $INITHOOKS_CONF ] && . $INITHOOKS_CONF
-$INITHOOKS_PATH/bin/tvheadendconfig.py
+$INITHOOKS_PATH/bin/tvheadend.py --pass="$APP_PASS"
