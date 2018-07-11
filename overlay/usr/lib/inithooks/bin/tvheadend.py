@@ -43,5 +43,8 @@ def main():
     system('echo "tvheadend tvheadend/admin_password password %s" | debconf-set-selections' % password)
     """Configure Package"""
     system('DEBIAN_FRONTEND=noninteractive', 'dpkg-reconfigure', 'tvheadend')
+    """Clear Package Configuration"""
+    system('echo purge | debconf-communicate tvheadend')
+    
 if __name__ == "__main__":
     main()
