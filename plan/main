@@ -7,3 +7,5 @@ bzip2
 libjson-xs-perl
 dirmngr
 debconf-utils
+
+nginx /* nginx reverse proxy for TVheadend Web UI */
