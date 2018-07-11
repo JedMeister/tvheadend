@@ -41,6 +41,8 @@ def main():
     """Set Package Configuration"""
     system('echo "tvheadend tvheadend/admin_username string admin" | debconf-set-selections')
     system('echo "tvheadend tvheadend/admin_password password %s" | debconf-set-selections' % password)
+    """Change Default Listening Port"""
+    system('sed', '-i', "s/TVH_HTTP_PORT=.*/TVH_HTTP_PORT=\"9980\"/g", '/etc/default/tvheadend')
     """Configure Package"""
     system('DEBIAN_FRONTEND=noninteractive', 'dpkg-reconfigure', 'tvheadend')
     """Clear Package Configuration"""
