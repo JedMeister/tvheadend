@@ -47,6 +47,8 @@ def main():
     system('DEBIAN_FRONTEND=noninteractive', 'dpkg-reconfigure', 'tvheadend')
     """Clear Package Configuration"""
     system('echo purge | debconf-communicate tvheadend')
-    
+    """Restart nginx"""
+    system('service', 'nginx', 'restart')
+
 if __name__ == "__main__":
     main()
