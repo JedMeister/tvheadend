@@ -39,8 +39,8 @@ def main():
             "Enter Web GUI Password.")
         
     """Set Package Configuration"""
-    system('debconf-set-selections', '<<<', "tvheadend tvheadend/admin_username string admin")
-    system('debconf-set-selections', '<<<', "tvheadend tvheadend/admin_password password %s" % password)
+    system('echo "tvheadend tvheadend/admin_username string admin" | debconf-set-selections')
+    system('echo "tvheadend tvheadend/admin_password password %s" | debconf-set-selections' % password)
     """Configure Package"""
     system('DEBIAN_FRONTEND=noninteractive', 'dpkg-reconfigure', 'tvheadend')
 if __name__ == "__main__":
