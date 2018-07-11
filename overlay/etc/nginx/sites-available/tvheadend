@@ -6,7 +6,9 @@ server {
 
 # redirect 9981 (TVheadend UI default) to https
 server {
-    listen 0.0.0.0:9981;
+    listen 0.0.0.0:9981 ssl;
+    include /etc/nginx/include/ssl;
+    error_page 497 =302 https://$host$request_uri;
     return 302 https://$host$request_uri;
 }
 
