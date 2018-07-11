@@ -6,7 +6,6 @@ Option:
 
 import sys
 import getopt
-import bcrypt
 
 from executil import system
 from dialog_wrapper import Dialog
