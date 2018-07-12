@@ -15,8 +15,8 @@ server {
 # reverse proxy for TVheadend
 server {
     listen 0.0.0.0:443 ssl;
-    access_log /var/log/nginx/syncthing.log;
-    error_log /var/log/nginx/syncthing_error.log;
+    access_log /var/log/nginx/tvheadend.log;
+    error_log /var/log/nginx/tvheadend_error.log;
     include /etc/nginx/include/ssl;
 
     location / {
