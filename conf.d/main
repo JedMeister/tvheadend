@@ -14,3 +14,6 @@ chmod +x $BIN/tv_grab_file
 # enabled nginx reverse proxy
 rm /etc/nginx/sites-enabled/default
 ln -s /etc/nginx/sites-available/tvheadend /etc/nginx/sites-enabled/tvheadend
+
+# bind to localhost
+sed -i '\|^TVH_ARGS|s|=.*|="--bindaddr 127.0.0.1"|' /etc/default/tvheadend
