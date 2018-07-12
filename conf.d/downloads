@@ -6,6 +6,6 @@ dl() {
 }
 
 
-URL="https://github.com/Rigolo/tv-grab-file/archive/master.zip"
+URL="https://raw.githubusercontent.com/Rigolo/tv-grab-file/master/tv_grab_file"
 
-dl $URL /opt/
+dl $URL /usr/local/src

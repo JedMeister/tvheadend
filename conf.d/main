@@ -1,17 +1,15 @@
 #!/bin/sh -ex
 
 SRC=/usr/local/src
-SRC2=/opt/
+BIN=/usr/local/bin
 
 apt-get update
 
 DEBIAN_FRONTEND=noninteractive apt-get -y install tvheadend
 
 #Enable Adding TV Guide From File
-unzip $SRC2/master.zip -d /usr/bin
-rm $SRC2/master.zip
-mv /usr/bin/tv-grab-file-master/tv_grab_file /usr/bin/tv_grab_file
-rm -rf /usr/bin/tv-grab-file-master
+mv $SRC/tv_grab_file $BIN/tv_grab_file
+chmod +x $BIN/tv_grab_file
 
 # enabled nginx reverse proxy
 rm /etc/nginx/sites-enabled/default
